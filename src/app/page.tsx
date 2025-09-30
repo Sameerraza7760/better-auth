@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/router";
 
 export default function SignupPage() {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -32,7 +33,7 @@ export default function SignupPage() {
      },
       onSuccess: (data) => {
         console.log("Signup successful ✅", data);
-        redirect('/about')
+       router.push('/about')
       },
       onError: (error) => {
         console.error("Signup failed ❌", error);
