@@ -2,14 +2,16 @@
 import React from 'react'
 import { authClient } from '@/lib/auth-client'
 import { router } from 'better-auth/api'
+import { useRouter } from 'next/navigation'
 import { redirect } from 'next/navigation'
 const Logout = () => {
+    const router = useRouter()
     const handleLogout = async()=>{
     try {
       await authClient.signOut({
             fetchOptions:{
                 onSuccess:()=>{
-                    redirect('/')
+                   router.push('/')
                 },
                 onError:(err)=>{
                     console.log(err)
@@ -17,7 +19,7 @@ const Logout = () => {
             }
         })
     } catch (error) {
-        
+        console.log(error)
     }
     }
   return (
