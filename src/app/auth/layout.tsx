@@ -8,13 +8,13 @@ export default async function AuthLayout({
   children: React.ReactNode;
 }>) {
   const session = await auth.api.getSession({
-    headers: await headers(), // you need to pass the headers object
+    headers: await headers(), 
   });
 
   console.log("session", session);
 
-  if (!session) {
-    redirect("/signin");
+  if (session) {
+    redirect("/about");
   }
 
   return <>{children}</>;
